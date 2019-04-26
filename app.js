@@ -30,10 +30,12 @@ app.use(session(config.ses, app));
 // 引入 router
 const userRouter = require('./routes/userRouter');
 const exampleRouter = require('./routes/exampleRouter');
+const customerRouter = require('./routes/customerRouter');
 
 // 使用 router
 app.use(userRouter.routes()).use(userRouter.allowedMethods());
 app.use(exampleRouter.routes()).use(exampleRouter.allowedMethods());
+app.use(customerRouter.routes()).use(customerRouter.allowedMethods());
 
 app.listen(config.port, () => {
   console.log(`server port in ${config.port} :)`);

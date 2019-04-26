@@ -18,14 +18,23 @@ const CustomerSchema = new mongoose.Schema(
     province: {
       type: String,
     },
+    address: {
+      type: String,
+    },
     email: {
       type: String,
     },
-    phone: {
-      type: String,
+    createTime: {
+      type: Date,
+      default: Date.now,
     },
   },
-  { collection: 'customer', versionKey: false },
+  {
+    collection: 'customer',
+    versionKey: false,
+    // https://www.cnblogs.com/duhuo/p/6232534.html
+    timestamps: { createdAt: 'createTime' },
+  },
 );
 
 module.exports = mongoose.model('customer', CustomerSchema);
