@@ -1,0 +1,21 @@
+{
+  "name": "tran-man-rd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "s": "nodemon app.js"
+  },
+  "repository": "git@github.com:Acmu/tran-man-rd.git",
+  "author": "Xio Min",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.10.1",
+    "koa2-cors": "^2.0.6",
+    "mongoose": "^5.5.3",
+    "nodemon": "^1.18.11",
+    "uuid": "^3.3.2"
+  }
+}
