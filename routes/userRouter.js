@@ -4,6 +4,7 @@ const userCtl = require('../controllers/userCtl');
 
 router.get('/api/test', userCtl.getTest);
 router.get('/api/checksigned', userCtl.checkSigned);
+router.get('/api/user/getname', userCtl.getAllName);
 
 router.post('/api/test', userCtl.postTest);
 router.post('/api/signin', userCtl.login);

@@ -1,29 +1,21 @@
-const Customer = require('../models/customer');
+const Order = require('../models/order');
 const uuidv1 = require('uuid/v1');
-const { errMsg, sucMsg, ignoreParams, includeParams } = require('../utils/showMsg');
+const { errMsg, sucMsg, ignoreParams } = require('../utils/showMsg');
 
-// 新建客户
-// name phone
-exports.addCustomer = async ctx => {
-  const req = ctx.request.body;
+// 新建订单
+// deliveryUserId customerId
+exports.addOrder = async ctx => {
+  const { deliveryUserId, customerId } = ctx.request.body;
 
-  const newCustomer = await Customer.create({
-    customerId: uuidv1(),
-    name: req.name,
-    phone: req.phone,
-  });
-
-  ctx.body = sucMsg(newCustomer, '新建客户成功');
-};
-
-// 获取客户姓名 id列表
-exports.getAllName = async ctx => {
   try {
-    const arr = await Customer.find({}, includeParams('customerId', 'name'));
-    ctx.body = sucMsg(arr);
-  } catch (err) {
-    console.log(err);
-    ctx.body = errMsg();
+    const newOrder = await Order.create({
+      orderId: uuidv1(),
+      deliveryUserId,
+      customerId,
+    });
+    ctx.body = sucMsg(newOrder, '新建订单成功');
+  } catch (e) {
+    ctx.body = errMsg(e);
   }
 };
 

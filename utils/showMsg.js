@@ -32,3 +32,12 @@ exports.ignoreParams = (...v) =>
     },
     { _id: 0 },
   );
+
+exports.includeParams = (...v) =>
+  v.reduce(
+    (acc, cur) => {
+      acc[cur] = 1;
+      return acc;
+    },
+    { _id: 0 },
+  );

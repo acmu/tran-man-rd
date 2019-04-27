@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "s": "nodemon -- --inspect app.js"
+    "dev": "nodemon -- --inspect app.js"
   },
   "repository": "git@github.com:Acmu/tran-man-rd.git",
   "author": "Xio Min",

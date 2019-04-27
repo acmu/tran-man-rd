@@ -31,11 +31,13 @@ app.use(session(config.ses, app));
 const userRouter = require('./routes/userRouter');
 const exampleRouter = require('./routes/exampleRouter');
 const customerRouter = require('./routes/customerRouter');
+const orderRouter = require('./routes/orderRouter');
 
 // 使用 router
 app.use(userRouter.routes()).use(userRouter.allowedMethods());
 app.use(exampleRouter.routes()).use(exampleRouter.allowedMethods());
 app.use(customerRouter.routes()).use(customerRouter.allowedMethods());
+app.use(orderRouter.routes()).use(orderRouter.allowedMethods());
 
 app.listen(config.port, () => {
   console.log(`server port in ${config.port} :)`);

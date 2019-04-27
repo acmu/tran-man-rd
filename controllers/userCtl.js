@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const uuidv1 = require('uuid/v1');
-const { errMsg, sucMsg } = require('../utils/showMsg');
+const { errMsg, sucMsg, includeParams } = require('../utils/showMsg');
 
 const getTest = async (ctx, next) => {
   ctx.status = 200;
@@ -16,6 +16,16 @@ const postTest = async (ctx, next) => {
     msg: 'post 😎',
     data: ctx.request.body,
   };
+};
+
+const getAllName = async ctx => {
+  try {
+    const arr = await User.find({}, includeParams('userId', 'account', 'userName'));
+    ctx.body = sucMsg(arr);
+  } catch (error) {
+    console.log(error);
+    ctx.body = errMsg();
+  }
 };
 
 // 登录
@@ -154,4 +164,5 @@ module.exports = {
   updateUserInfo,
   checkSigned,
   signOut,
+  getAllName,
 };
