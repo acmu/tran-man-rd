@@ -3,7 +3,7 @@ const router = new Router();
 const orderCtl = require('../controllers/orderCtl');
 
 // get
-// router.get('/api/customer/list', customerCtl.getList);
+router.get('/api/order/list', orderCtl.getList);
 
 // post
 router.post('/api/order/add', orderCtl.addOrder);

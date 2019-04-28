@@ -20,7 +20,7 @@ const postTest = async (ctx, next) => {
 
 const getAllName = async ctx => {
   try {
-    const arr = await User.find({}, includeParams('userId', 'account', 'userName'));
+    const arr = await User.find({ isAdmin: false }, includeParams('userId', 'account', 'userName'));
     ctx.body = sucMsg(arr);
   } catch (error) {
     console.log(error);
@@ -74,7 +74,7 @@ const register = async (ctx, next) => {
   if (user) {
     ctx.body = {
       code: 0,
-      msg: '用户名重复！',
+      msg: '账号重复！',
     };
     return;
   }
@@ -88,6 +88,7 @@ const register = async (ctx, next) => {
   const userId = uuidv1();
   const newUser = await User.create({
     userId,
+    userName: req.userName,
     account: req.account,
     password: req.password,
     isAdmin: req.admin ? true : false,
