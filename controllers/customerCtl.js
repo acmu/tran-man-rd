@@ -9,8 +9,7 @@ exports.addCustomer = async ctx => {
 
   const newCustomer = await Customer.create({
     customerId: uuidv1(),
-    name: req.name,
-    phone: req.phone,
+    ...req,
   });
 
   ctx.body = sucMsg(newCustomer, '新建客户成功');
@@ -80,5 +79,18 @@ exports.updateCustomer = async ctx => {
     ctx.body = sucMsg('更新客户成功');
   } else {
     ctx.body = errMsg('更新客户失败');
+  }
+};
+
+// 获取单个customer信息
+exports.getOneCustomer = async ctx => {
+  const { customerId } = ctx.request.query;
+  // 获取用户的 customerId
+  const result = await Customer.findOne({ customerId });
+
+  if (result) {
+    ctx.body = sucMsg(result);
+  } else {
+    ctx.body = errMsg();
   }
 };

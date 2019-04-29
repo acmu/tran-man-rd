@@ -157,6 +157,19 @@ const updateUserInfo = async (ctx, next) => {
   }
 };
 
+// 获取单个user信息
+const getOneUser = async ctx => {
+  const { userId } = ctx.request.query;
+  // 获取用户的 userId
+  const result = await User.findOne({ userId });
+
+  if (result) {
+    ctx.body = sucMsg(result);
+  } else {
+    ctx.body = errMsg();
+  }
+};
+
 module.exports = {
   getTest,
   postTest,
@@ -166,4 +179,5 @@ module.exports = {
   checkSigned,
   signOut,
   getAllName,
+  getOneUser,
 };

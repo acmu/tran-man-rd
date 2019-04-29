@@ -12,7 +12,8 @@ const OrderSchema = new mongoose.Schema(
       require: true,
     },
     status: {
-      type: String,
+      type: Number,
+      default: 0,
     },
     customerId: {
       type: String,
@@ -20,6 +21,7 @@ const OrderSchema = new mongoose.Schema(
     },
     location: {
       type: String,
+      default: '商品库房',
     },
     productCategory: {
       type: String,

@@ -5,6 +5,7 @@ const customerCtl = require('../controllers/customerCtl');
 // get
 router.get('/api/customer/list', customerCtl.getList);
 router.get('/api/customer/getname', customerCtl.getAllName);
+router.get('/api/customer/getone', customerCtl.getOneCustomer);
 
 // post
 router.post('/api/customer/add', customerCtl.addCustomer);

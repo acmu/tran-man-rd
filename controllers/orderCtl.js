@@ -34,32 +34,9 @@ exports.getList = async ctx => {
   const currentPage = Number(req.currentPage);
 
   // createTime 倒序排
-  let arr = await Order.find({}, ignoreParams())
-    .sort({
-      createdAt: -1,
-    })
-    .populate({
-      path: 'user',
-      select: 'userId userName',
-    });
-
-  // for (let i = 0; i < 3; i++) {
-  //   const xio = await User.findOne({ userId: 'b03b3770-69c7-11e9-9f19-41d04b178e76' });
-  //   console.log(xio);
-  // }
-
-  console.log(arr, 'arr');
-
-  arr[0] = Object.assign({ uuuuuuuu: 123 }, arr[0]._doc);
-  arr[1].userName = await User.findOne({ userId: arr[1].deliveryUserId });
-
-  // for await (const val of arr) {
-  //   val.userName = await User.findOne({ userId: val.deliveryUserId });
-  //   val.name = await Customer.findOne({ customerId: val.customerId });
-  //   // debugger;
-  // }
-
-  console.log(arr, 'arr');
+  let arr = await Order.find({}, ignoreParams()).sort({
+    createdAt: -1,
+  });
 
   const total = arr.length;
 
@@ -68,35 +45,35 @@ exports.getList = async ctx => {
   ctx.body = sucMsg({ arr, total });
 };
 
-// 删除客户
-// customerId
-exports.deleteCustomer = async ctx => {
-  const { customerId } = ctx.request.body;
+// 删除订单
+// orderId
+exports.deleteOrder = async ctx => {
+  const { orderId } = ctx.request.body;
 
-  const res = await Customer.deleteOne({ customerId });
+  const res = await Order.deleteOne({ orderId });
 
   if (res.n === 1) {
-    ctx.body = sucMsg('删除客户成功');
+    ctx.body = sucMsg('删除订单成功');
   } else {
-    ctx.body = errMsg('删除客户失败');
+    ctx.body = errMsg('删除订单失败');
   }
 };
 
-// 更新客户
-// customerId
-exports.updateCustomer = async ctx => {
-  const { customerId, ...others } = ctx.request.body;
+// 更新订单
+// orderId
+exports.updateOrder = async ctx => {
+  const { orderId, ...others } = ctx.request.body;
 
-  const res = await Customer.updateOne(
-    { customerId },
+  const res = await Order.updateOne(
+    { orderId },
     {
       $set: others,
     },
   );
 
   if (res.n === 1) {
-    ctx.body = sucMsg('更新客户成功');
+    ctx.body = sucMsg('更新订单成功');
   } else {
-    ctx.body = errMsg('更新客户失败');
+    ctx.body = errMsg('更新订单失败');
   }
 };
